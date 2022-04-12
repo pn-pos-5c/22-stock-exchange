@@ -1,0 +1,29 @@
+<div>
+  <div>
+    <h1>Stock Exchange</h1>
+    <button>Disconnect</button>
+    <span>Connected clients: {{clientCount}}</span>
+  </div>
+
+  <hr>
+
+  <div>
+    <div>Username</div>
+    <input type="text" [(ngModel)]="username">
+    <span>Cash: {{cash | number:'1.2'}}</span>
+  </div>
+
+  <hr>
+
+  <div>
+    <div>Share</div>
+    <select>
+      <option *ngFor="let share of shares" value=""></option>
+    </select>
+    <input type="number">
+    <button>Buy</button>
+    <button>Sell</button>
+  </div>
+
+  <hr>
+</div>

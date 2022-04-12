@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "K+2LGUA8yzFE7DKRQu/HWA2XRqOFiZ2GsrBb6bnfGmQ=",
+  "Source": "SignalRStocksBackend",
+  "BasePath": "_content/SignalRStocksBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
