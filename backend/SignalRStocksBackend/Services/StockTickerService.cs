@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.SignalR;
 using SignalRStocksBackend.DTOs;
 using SignalRStocksBackend.Entities;
-// ** comment in when the Hub is ready
 using SignalRStocksBackend.Hubs;
 
 namespace SignalRStocksBackend.Services;
@@ -10,7 +9,6 @@ namespace SignalRStocksBackend.Services;
 public class StockTickerService
 {
     private readonly Random random = new();
-    // ** comment in when the Hub is ready
     private readonly StockHub stockHub;
     private readonly StockContext db;
     private readonly Dictionary<string, List<Tuple<double, double>>> stockData = new();
@@ -27,11 +25,10 @@ public class StockTickerService
     // ** comment in when the Hub is ready
     public StockTickerService(StockHub stockHub, StockContext db)
     {
-        // ** comment in when the Hub is ready
         this.stockHub = stockHub;
         this.db = db;
         PrepareStockData();
-        PrintComparison("StockA");
+        // PrintComparison("StockA");
         Task.Run(() => StartStockTicker());
     }
 
@@ -117,20 +114,28 @@ public class StockTickerService
             {
                 var spline = splines[name];
                 double y = spline.Interpolate(x);
-                var item = stockData[name].FirstOrDefault(p => p.Item1 == x);
-                if (item != null) Console.WriteLine($"   {x:0.0}/{name}: {y:0.00} (real value)");
+                //var item = stockData[name].FirstOrDefault(p => p.Item1 == x);
+                //if (item != null) Console.WriteLine($"   {x:0.0}/{name}: {y:0.00} (real value)");
                 double noise = y * maxNoisePerc * (random.NextDouble() * 2 - 1);
                 y += noise;
                 if (y < 0.5) y = 0.5;
-                Console.WriteLine($"   {x:0.0}/{name}: {y:0.00}");
+                //Console.WriteLine($"   {x:0.0}/{name}: {y:0.00}");
                 stocks.Add(new ShareTickDto
                 {
                     Name = name,
                     Val = y
                 });
+
+                var share = db.Shares.SingleOrDefault(x => x.Name.Equals(name));
+                if (share != null)
+                {
+                    share.StartPrice = y;
+                }
             }
+            db.SaveChanges();
             Console.WriteLine($"StockService::SendNewStocks via Hub: {stocks.Count} stocks");
-            // ** comment in when the Hub is ready
+
+
             if (stockHub.Clients != null)
             {
                 await stockHub.Clients.All.SendAsync("newStocks", stocks);

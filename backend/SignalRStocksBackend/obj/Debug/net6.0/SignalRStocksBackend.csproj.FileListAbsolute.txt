@@ -235,7 +235,7 @@ C:\HTL\5_Klasse\POS\22-stock-exchange\backend\SignalRStocksBackend\obj\Debug\net
 C:\HTL\5_Klasse\POS\22-stock-exchange\backend\SignalRStocksBackend\obj\Debug\net6.0\scopedcss\bundle\SignalRStocksBackend.styles.css
 C:\HTL\5_Klasse\POS\22-stock-exchange\backend\SignalRStocksBackend\obj\Debug\net6.0\SignalRStocksBackend.csproj.CopyComplete
 C:\HTL\5_Klasse\POS\22-stock-exchange\backend\SignalRStocksBackend\obj\Debug\net6.0\SignalRStocksBackend.dll
-C:\HTL\5_Klasse\POS\22-stock-exchange\backend\SignalRStocksBackend\obj\Debug\net6.0\refint\SignalRStocksBackend.dll
 C:\HTL\5_Klasse\POS\22-stock-exchange\backend\SignalRStocksBackend\obj\Debug\net6.0\SignalRStocksBackend.pdb
 C:\HTL\5_Klasse\POS\22-stock-exchange\backend\SignalRStocksBackend\obj\Debug\net6.0\SignalRStocksBackend.genruntimeconfig.cache
 C:\HTL\5_Klasse\POS\22-stock-exchange\backend\SignalRStocksBackend\obj\Debug\net6.0\ref\SignalRStocksBackend.dll
+C:\HTL\5_Klasse\POS\22-stock-exchange\backend\SignalRStocksBackend\bin\Debug\net6.0\ref\SignalRStocksBackend.dll

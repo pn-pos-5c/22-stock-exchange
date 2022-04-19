@@ -1,29 +1,73 @@
 <div>
   <div>
     <h1>Stock Exchange</h1>
-    <button>Disconnect</button>
-    <span>Connected clients: {{clientCount}}</span>
+    <button *ngIf="!signalr.isConnected" (click)="signalr.connect()">Connect</button>
+    <button *ngIf="signalr.isConnected" (click)="signalr.disconnect()">Disconnect</button>
+    <span>Connected clients: {{data.connectedClients}}</span>
   </div>
 
   <hr>
 
   <div>
     <div>Username</div>
-    <input type="text" [(ngModel)]="username">
-    <span>Cash: {{cash | number:'1.2'}}</span>
+    <input type="text" (change)="userNameChanged($event)">
+    <span>Cash: {{data.userCash | number:'1.2'}}</span>
   </div>
 
   <hr>
 
   <div>
     <div>Share</div>
-    <select>
-      <option *ngFor="let share of shares" value=""></option>
+    <select [(ngModel)]="selectedShare">
+      <option *ngFor="let share of data.shares" [value]="share.name">{{share.name}}</option>
     </select>
-    <input type="number">
-    <button>Buy</button>
-    <button>Sell</button>
+    <input min="1" #inputAmount type="number">
+    <button (click)="addTransaction(+inputAmount.value, true)">Buy</button>
+    <button (click)="addTransaction(+inputAmount.value, false)">Sell</button>
   </div>
 
   <hr>
+</div>
+
+<div>
+  <table>
+    <thead>
+    <tr>
+      <td>Share</td>
+      <td>Amount</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let share of data.userShares">
+      <td>{{share.shareName}}</td>
+      <td>{{share.amount}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <thead>
+    <tr>
+      <td>Share</td>
+      <td>Price</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let share of data.shares">
+      <td>{{share.name}}</td>
+      <td>{{share.val | number:'1.2'}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div>
+    <canvas baseChart width="300" height="100"
+            [data]="chartData"
+            [type]="'line'">
+    </canvas>
+  </div>
+</div>
+
+<div style="float: bottom">
+  <div *ngFor="let message of signalr.messages">{{message}}</div>
 </div>

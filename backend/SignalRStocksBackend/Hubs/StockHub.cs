@@ -23,13 +23,14 @@ namespace SignalRStocksBackend.Hubs
         public override Task OnDisconnectedAsync(Exception? exception)
         {
             clientCount--;
-            Clients.All.SendAsync("ClientCoundChanged", clientCount);
+            Clients.All.SendAsync("ClientCountChanged", clientCount);
             return base.OnDisconnectedAsync(exception);
         }
 
         public void BuyShare(string username, string shareName, int amount, bool isBuy)
         {
-            var transaction = stockService.
+            var transaction = stockService.AddTransaction(username, shareName, amount, isBuy);
+            Clients.All.SendAsync("transactionReceived", transaction);
         }
     }
 }

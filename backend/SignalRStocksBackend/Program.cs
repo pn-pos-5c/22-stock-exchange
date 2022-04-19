@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddSingleton<StockTickerService>();
+builder.Services.AddSingleton<StockService>();
 builder.Services.AddSingleton<StockContext>();
 builder.Services.AddSingleton<StockHub>();
 builder.Services.AddSignalR();

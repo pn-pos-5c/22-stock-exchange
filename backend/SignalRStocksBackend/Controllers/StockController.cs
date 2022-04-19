@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SignalRStocksBackend.DTOs;
 using SignalRStocksBackend.Services;
 
@@ -37,5 +36,23 @@ public class StockController : ControllerBase
     {
         Console.WriteLine($"StockController::Testerl");
         return "Done";
+    }
+
+    [HttpGet]
+    public IActionResult GetShares()
+    {
+        return Ok(stockService.GetAllShares());
+    }
+
+    [HttpGet]
+    public IActionResult GetCash(string name)
+    {
+        return Ok(stockService.GetCash(name));
+    }
+
+    [HttpGet]
+    public IActionResult GetDepots(string name)
+    {
+        return Ok(stockService.GetDepots(name));
     }
 }
